@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Rewrite all traffic to public directory for shared hosting (InfinityFree / cPanel)
+    RewriteRule ^$ public/ [L]
+    RewriteRule (.*) public/$1 [L]
+</IfModule>
+
+# Security: Deny direct web access to sensitive configuration files
+<FilesMatch "^\.env|composer\.(json|lock)|package\.(json|lock)|artisan">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
